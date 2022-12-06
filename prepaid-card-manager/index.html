@@ -119,7 +119,13 @@
         }
 
         function RemoveData(){
-            
+            remove(ref(db,"People/"+enterID.value))
+            .then(()=>{
+                alert("data removed!");
+            })
+            .catch((error)=>{
+                alert(error);
+            })
         }
 
         insertBtn.addEventListener('click', InsertData);
