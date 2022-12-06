@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Database</title>
+
+    <style>
+        body{text-align: center;}
+        #enterDetails{float: left; width: 50%; background-color: darkslategray;}
+        #findDetails{float:right; width:50%; background-color: brown;}
+    </style>
+</head>
+<body>
+    <div id="enterDetails">
+        <h1>Enter Details</h1>
+        <h4>ID</h4>
+        <input id="enterID" type="text">
+
+        <h4>Name</h4>
+        <input id="enterName" type="text">
+
+        <h4>AGE</h4>
+        <input id="enterAge" type="number"><br><br>
+
+        <button id="insert">INSERT</button>
+        <button id="update">UPDATE</button>
+        <button id="remove">REMOVE</button>
+
+    </div>
+
+    <div id="findDetails">
+        <h1>Find by ID</h1>
+        <input id="findID" type="text"> <br><br>
+
+        <button id="find">FIND</button>
+
+        <h3 id="findName" type="text"></h3>
+        <h3 id="findAGE" type="number"></h3>
+
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDLtbu7znzhba1IkzxfptkSbCIaQgUSDlE",
+          authDomain: "fir-bcaf6.firebaseapp.com",
+          databaseURL: "https://fir-bcaf6-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "fir-bcaf6",
+          storageBucket: "fir-bcaf6.appspot.com",
+          messagingSenderId: "214512315771",
+          appId: "1:214512315771:web:bb12e5cc764754212161de"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        import{getDatabase, set,get,remove,update,ref,child} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js"
+
+        const db=getDatabase();
+        var enterID=document.querySelector("#enterID");
+        var enterName=document.querySelector("#enterName");
+        var enterAge=document.querySelector("#enterAge");
+
+        var findID=document.querySelector("#findID");
+        var findName=document.querySelector("#findName");
+        var findAge=document.querySelector("#findAge");
+        
+        var insertBtn=document.querySelector("#insert");
+        var updateBtn=document.querySelector("#update");
+        var removeBtn=document.querySelector("#remove");
+        var findBtn=document.querySelector("#find");
+
+        function InsertData(){
+            set(ref(db,"People/"+enterID.value),{
+                Name:enterName.value,
+                ID:enterID.value,
+                Age:enterAge.value
+            })
+            .then(()=>{
+                alert("Inserted Data!");
+            })
+            .catch((error)=>{
+                alert(error);
+            })
+        }
+        
+        function UpdateData(){
+            
+        }
+
+        function RemoveData(){
+            
+        }
+
+        function FindData(){
+            
+        }
+
+        insertBtn.addEventListener('click', InsertData);
+        updateBtn.addEventListener('click', UpdateData);
+        removeBtn.addEventListener('click', RemoveData);
+        findBtn.addEventListener('click', FindData);
+      </script>
+</body>
+</html>
