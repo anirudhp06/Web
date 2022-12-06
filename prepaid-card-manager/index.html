@@ -109,7 +109,7 @@
             get(ref(db,"People/"+enterID.value))
             .then((snapshot)=>{
                 if(snapshot.exists()){
-                   udpate(ref(db,"People/"+enterID.value),{
+                   update(ref(db,"People/"+enterID.value),{
                     Name: enterName.value,
                     Age: enterAge.value
                    }) 
