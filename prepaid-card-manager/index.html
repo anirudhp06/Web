@@ -106,12 +106,19 @@
         }
         
         function UpdateData(){
-            update(ref(db,"People/"+enterID.value),{
-                Name: enterName.value,
-                Age: enterAge.value
-            })
-            .then(()=>{
-                alert("Data Updated!");
+            get(ref(db,"People/"+enterID.value))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                   udpate(ref(db,"People/"+enterID.value),{
+                    Name: enterName.value,
+                    Age: enterAge.value
+                   }) 
+                   .then(()=>{
+                    alert("Data Updated Successfully!");
+                   })
+                }else{
+                    alert(enterID.value+" does not exists");
+                }
             })
             .catch((error)=>{
                 alert(error);
