@@ -37,7 +37,7 @@
         <button id="find">FIND</button>
 
         <h3 id="findName" type="text"></h3>
-        <h3 id="findAGE" type="number"></h3>
+        <h3 id="findAge" type="number"></h3>
 
     </div>
     <script type="module">
@@ -88,16 +88,28 @@
                 alert(error);
             })
         }
+
+        function FindData(){
+            const dbref=ref(db);
+            get(child(dbref,"People/"+findID.value))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    findName.innerHTML="Name:"+snapshot.val().Name;
+                    findAge.innerHTML="Age: "+snapshot.val().Age;
+                }else{
+                    alert("No data Found");
+                }
+            })
+            .catch((error)=>{
+                alert(error);
+            })
+        }
         
         function UpdateData(){
             
         }
 
         function RemoveData(){
-            
-        }
-
-        function FindData(){
             
         }
 
