@@ -1,0 +1,61 @@
+<!-- This page was made to insert card information prior to using them. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="insert">Insert Card Number:</label>
+    <input type="number" name="insert" id="inss">
+    <br>
+    <label for="amt">Enter Amount:</label>
+    <input type="number" name="amt" id="amtt"><br>
+
+    <button id="submit">Insert Card</button>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyDLtbu7znzhba1IkzxfptkSbCIaQgUSDlE",
+        authDomain: "fir-bcaf6.firebaseapp.com",
+        databaseURL: "https://fir-bcaf6-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "fir-bcaf6",
+        storageBucket: "fir-bcaf6.appspot.com",
+        messagingSenderId: "214512315771",
+        appId: "1:214512315771:web:bb12e5cc764754212161de"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        import{getDatabase, set,get,remove,update,ref,child} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js"
+
+        const db=getDatabase();
+
+        var ins=document.querySelector("#inss");
+        var amount=document.querySelector("#amtt");
+
+        var subBtn=document.querySelector("#submit");
+
+        function insertData(){
+            set(ref(db,"Card/"+ins.value),{
+            Amount: amount.value
+        })
+        .then(()=>{
+            alert("Inserted Data!");
+        })
+        .catch((error)=>{
+            alert(error);
+        })
+        }
+        subBtn.addEventListener('click',insertData);
+        </script>
+</body>
+</html>

@@ -7,17 +7,31 @@
             Recharge||Refund||Lookup Cards
         </title>
         <link rel="stylesheet" href="css/prepaid.css">
+        <script type="module" src="js/prepaid-code.js"></script>
     </head>
     <body>
         <div id="updateSection">
           <h1><center>Update or Allocate Card</center></h1>
 			<form>
 				<label for="Card_Number">Card Number:</label>
-				<input type="text" name="Card_Number">
+				<input type="text" name="Card_Number" id="CardNumber">
+                <label for="amount">Amount:</label>
+                <input type="number" name="amount" id="CardAmount"><br><br>
+
+                <button id="updateCard">UPDATE CARD</button>
 			</form>
         </div>
         <div id="refundData">
-            <h1><center>Refund the Card</center></h1>
+            <h1><center>Refund/Check balance of the Card</center></h1>
+            <form>
+                <label for="Refund_Number">Card Number:</label>
+                <input type="text" name="Refund_Number" id="refun_num">
+
+                <button id="check">Check Balance</button> 
+                <button id="refun">Refund Balance</button>
+                
+                <h4 id="balance" type="number"></h4>
+            </form>
         </div>
     </body>
 </html>
